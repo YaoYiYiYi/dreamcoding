@@ -1,0 +1,11 @@
+<view>
+    <view class="cover">
+        <image src="{{car.image}}"  mode="aspectFill"/>
+        <view class="content">
+            <view class="header">{{car.header}}</view>
+            <view class="meta">{{car.meta.price}}</view>
+        </view>
+    </view>
+    <view class="spc"></view>
+    <view class="action"></view>
+</view>

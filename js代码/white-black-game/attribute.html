@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+     <div class="mian" id="box"></div>
+     <div>
+
+     </div>
+     <script>
+         //dom操作
+        const divs= document.querySelectorAll('div')  
+        for(let i=0;i<divs.length;i++){
+            console.log(divs[i].getAttribute('abc'));
+            divs[i].setAttribute('sex','man')
+            /*设置每个属性添加一个 sex属性 内容是man*/
+        }
+     </script>
+</body>
+</html>

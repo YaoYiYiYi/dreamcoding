@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#page-one{
+    background: yellow;
+    color: aliceblue;
+    text-align: center;/*文字按钮居中*/
+    /* height:100vh;vh和100%是指父元素来说*/
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+button{
+    outline: none;
+    border:1px solid transparent;
+    background-color:#428bca;
+    padding: 6px 12px;
+    width: 300px;
+}
+#page-one h1{
+    margin-top: 100px;
+}
+#page-one p{
+    margin-top: 80px;
+    font-size: 1.5em;
+}
+#page-one button{
+    margin-top: 100px;
+}
+.screen{
+    margin-top: 10px;
+    /* display:flex; */
+}
+.screen .block{
+    float:left;
+    width: 49%;
+    background-color: red;
+    height: 200px;
+    margin: 1px;
+
+}

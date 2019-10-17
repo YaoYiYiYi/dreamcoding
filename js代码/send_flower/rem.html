@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function init(){
+            var width =
+         document.documentElement.clientWidth;
+         document.documentElement.style.fontSize = width/10+'px';
+        }
+        init();
+        window.onresize=function(){
+            init();
+        }
+    </script>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            margin: 0;
+            font-size: 2rem;
+            display: flex;
+            flex:1;
+            min-height:100vh;
+            align-items: center;
+        }
+        .clock{
+            width: 30em;
+        }
+        .box{
+            /* Px 是绝对单位 */
+            width: 10rem;
+            height: 20px;
+            background-color: green;
+        }
+         .col8{
+            width: 8rem;
+        }
+
+        .col7{
+            width: 7rem;
+        }
+        .col6{
+            width: 6rem;
+        }
+        .col-5{
+            width: 5rem;
+            height: 20px;
+            background: yellow;
+        } 
+        .col-4{
+            width: 4rem;
+        }
+        .col-3{
+            width: 3rem;
+        }
+         .col-2
+        {
+            width: 2rem;
+        }
+        .col-1{
+            width: 1rem;
+        } 
+        .container{
+            display: flex;
+            margin-top: 5px;
+        }
+        .container  .box:nth-child(even){
+            background-color: pink;
+        }
+        .row  .box:nth-child(even){
+            background-color: pink;
+        }
+        .row{
+            display: flex;
+            margin: 5px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="container">
+            <div class="box col-4"></div>
+            <div class="box col-3"></div>
+            <div class="box col-3"></div>
+    </div>
+    <div class="row">
+            <div class="box col-4"></div>
+            <div class="box col-3"></div>
+            <div class="box col-3"></div>
+    </div>
+    <div class="row">
+            <div class="box col-8"></div>
+            <div class="box col-2"></div>
+    </div>
+</body>
+</html>
