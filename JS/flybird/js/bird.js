@@ -36,10 +36,10 @@ var bird = {
 
             }
     },
-
+    //向上向下运动时煽动翅膀
     wingWave: function(){
         var up = ["url(img/up_bird0.png)","url(img/up_bird1.png)"]
-        var dowm = ["url(img/down_bird0.png)","url(img/dowm_bird1.png)"]
+        var down = ["url(img/down_bird0.png)","url(img/down_bird1.png)"]
         var i = 0, j = 0
         bird.wingtimer = setInterval(wing,120)
         function wing(){

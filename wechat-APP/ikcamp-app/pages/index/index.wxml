@@ -1,0 +1,21 @@
+<view class="wrapper">
+    <view class="group" wx:for="{{articleList}}">
+        <view class="group-bar">
+            <view class="group-title on">
+                {{item.date}}
+            </view>
+        </view>
+        <view class="group-content">
+            <view class="group-content-item visited"
+            bind:tap="gotoDetail"
+            wx:for="{{item.articles}}" wx:for-item="group">
+                <view class="group-content-item-desc">
+                    {{group.title}}
+                </view>
+                 <view >
+                     <image class="group-content-item-img" src="{{group.cover}}" />
+                 </view>
+            </view>
+        </view>
+    </view>
+</view>

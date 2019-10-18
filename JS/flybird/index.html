@@ -17,10 +17,14 @@
         <div id="grassland2"></div>
     </div>
     <script  src="./js/bird.js"></script>
+    <script src="./js/block.js"></script>
+    <script src="js/baseObj.js"></script>
     <script>
         var jsWrapBg=document.querySelector('.wrapBg')
         var jsHeadTitle=document.querySelector('.headTitle')
         var jsHeadBird = document.getElementById('headBird')
+        var  blocksArr = []
+        var blockDistance = baseObj.randomNum(120,350)
         var Y = 3
         var index = 0
         var imgArr = ["./img/bird0.png","./img/bird1.png"]
@@ -49,8 +53,31 @@
             {
                 jsGrassLand2.style.left = "343px"
             }
+            if (blocksArr.length) {
+                for (var i = 0; i < blocksArr.length; i++) {
+                    blocksArr[i].moveBlock()
+                    var x = baseObj.rectangleCrashExamine(blocksArr[i].downDivWrap, bird.div)
+                    var y = baseObj.rectangleCrashExamine(blocksArr[i].upDivWrap, bird.div)
+                    var z = bird.div.offsetTop >= 390
+                    if (x || y || z) {
+                        bird.fallSpeed = 0
+                        clearInterval(landTimer)
+                        jsWrapBg.onclick = null
+                    }
+                 }
+                if (blocksArr[blocksArr.length -1].downDivWrap.offsetLeft < (450 - blockDistance)) {
+                    blockDistance = baseObj.randomNum(130, 250)
+                    var newBlock = new Block()
+                    newBlock.createBlock()
+                    blocksArr.push(newBlock)
+                }
+                if(blocksArr[0].downDivWrap.offsetLeft<-50){
+                    jsWrapBg.removeChild(blocksArr[0].downDivWrap)
+                    jsWrapBg.removeChild(blocksArr[0].upDivWrap)
+                    blocksAff.shift(blocksArr)
+                }
+            }
         }
-        //点击开始 进行的操作
         var jsStartBtn = document.getElementById("startBtn")
         jsStartBtn.onclick = function(){
             jsHeadTitle.style.display = "none"
@@ -60,6 +87,11 @@
             bird.showBird(jsWrapBg)
             bird.flyBird()
             bird.wingWave()//煽动翅膀
+
+            var b = new Block()
+            b.createBlock()
+            blocksArr.push(b)
+
             jsWrapBg.onclick = function() {
                  bird.fallspeed = -8
             }
