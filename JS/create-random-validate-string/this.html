@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">123456</div>
+    <script>
+        const box = document.getElementById('box')
+
+        //普通函数 this调用的时候的决定，定义的function不算
+        //箭头函数 定义的时候既决定的(this指向它的外面一层) 而且不能后续无法改变
+        box.addEventListener('click',()=>{
+            console.log(this)
+        })
+
+        var obj ={
+            a:1,
+            es5Function: function(){
+                console.log(this===obj)
+            }
+        }
+        obj.es5Function()
+    </script>
+</body>
+</html>

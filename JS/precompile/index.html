@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*function fn(a){
+            console.log(a)  //function
+            var a=123
+            console.log(a)  //123
+            function a(){
+
+           }
+            console.log(a)   //123
+            var b=function(){//函数表达式
+
+            }
+            console.log(b)  //function
+            function d(){
+
+            }
+            console.log(d)
+            var d = a
+            console.log(d)
+        }
+        fn(1)*/
+        function test(a,b){
+            console.log(a) //1
+            c=0;
+            var c           
+            a =3
+            b=2
+            console.log(b) //2
+            function b(){}
+            function d(){}
+            console.log(b) //2
+        }
+        var AO = {
+            a:undefined,
+            c:undefined,
+            b:undefined
+        }
+        AO = {
+            a:1,
+            c:undefined,
+            b:undefined
+        }
+        AO = {
+            a:1,
+            c:undefined,
+            b:function(){},
+            d:function(){}
+        }
+        test(1)
+    </script>
+</body>
+</html>

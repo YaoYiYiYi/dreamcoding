@@ -69,8 +69,13 @@ Page({
   },
   combine(direction){
     //数字的滑动，把数字靠边
-    for()
-    this.slideNumber()
+    var arr = this.game
+    if(direction ===0){
+
+    }
+  
+    slideNumber()
+    
   },
   slideNumber(arr){
     //['' ,'2' ,' ', 2]=>[2,2,'','']
