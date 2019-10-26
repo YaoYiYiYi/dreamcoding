@@ -46,22 +46,22 @@
                 console.log(err)//和reject
          })*/
 
-        //  test()
-        //     .then(xq)
-        //     .then(marry)
+         test()
+            .then(xq)
+            .then(marry)
            // 等于上面的代码
         
-        //  Promise.all([test(),xq()]).then((value)=>{
-        //      console.log(value,'----------')
-        //      marry()
-        //  })  
-         // 需要实现all里面的方法(不分现后的实现)后在实现.then里的方法
-
-         Promise.race([test(),xq()]).then((value)=>{
+         Promise.all([test(),xq()]).then((value)=>{
              console.log(value,'----------')
              marry()
-         })
-         //实现race里面的方法，其中一个(看先后)，就可以执行marry
+         })  
+         // 需要实现all里面的方法(不分现后的实现)后在实现.then里的方法
+
+         /*Promise.race([test(),xq()]).then((value)=>{
+             console.log(value,'----------')
+             marry()
+         })*/
+         //实现race里面的方法，其中一个(看先后)，就可以执行marry在执行race里的其他
 
     </script>
 </body>
