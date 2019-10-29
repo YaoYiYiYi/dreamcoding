@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //结点
+        function Node(element){
+            //结点的值 
+            this.element = element
+            //指针
+            this.next = null
+        }
+        function LinkList(){
+            this.head = null
+            this.length = null
+        }
+        LinkList.prototype.append = function(element){
+            let block = new Node(element)
+            if(!this.head){
+                this.head = block
+            }
+            else{
+                let current = this.head
+                while(current.next){
+                    current = current.next
+                }
+                current.next = block
+            }
+
+        }
+        var list = new LinkList
+        list.append(1)
+        list.append(2)
+        list.append(3)
+        console.log(list)
+    </script>
+</body>
+</html>

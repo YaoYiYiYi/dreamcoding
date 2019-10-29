@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //symbol
+        //解决变量重复的问题
+        let a = Symbol()
+        let b = Symbol()
+        console.log(a===b)
+        var obj = {
+            name:"name",
+            [a]:'symbol',
+            [b]:'b'
+        }
+        //对象 的key 支持字符串 和 symbol
+        //但是 symbol 是不可以枚举的
+        for(let key in obj){
+            console.log(key)
+        }
+        console.log(Object.getOwnPropertySymbols(obj))
+
+
+       // const SAN_JIAO = 'sanjiao'
+        const SAN_JIAO = Symbol() 
+        function getArea(shapeName){
+            switch(shapeName){
+                case SAN_JIAO:
+                    return .5 * 5 * 10
+                case 'chang':
+                    return 10 * 5
+            }
+        }
+
+       console.log(getArea(SAN_JIAO))
+    </script>
+</body>
+</html>
