@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn"></button>
+    <script>
+        //map
+        //key-value
+        const btn = document.getElementById('btn')
+        var map = {
+            name:"lihua",
+            [btn]:"dom node",
+            3:'3 val',
+            2:'2 val'
+        }
+        map['1'] = '1 val'
+        map['0'] = '0 val'
+        //会返回map里面的key值，用数组的形式
+        console.log(Object.keys(map))
+
+
+
+
+
+        let map1 = new Map([
+            ['key','value']
+        ])    
+        console.log(map1)
+        //map1.set('key1','value1')
+        //map1.set(()=>{},'function')
+        //map1.set( getsomething(),'getsomething()')
+        //map1.get('key')
+
+        //数组 Map
+        for(let entey of map1){
+            console.log(entey)
+        }
+        //map1.keys()//输出所有的key
+        map1.delete('key')
+
+        //map1.entries()  可以把它所有的key value取出来
+        //map1.keys()
+        //map1.values()
+
+
+        //扩展运算符 
+         console.log(...[1,2,4]) //把数组打散
+         //foo(1,2,4);
+        console.log(Math.max(9,8,2))  
+        console.log(Math.max(...[9,8,2]))
+
+        let a =[1,2,3]
+        a.push(4,5);
+        a.push(...[6,7,8])
+
+
+
+
+
+        //有什么用，为什么ES6要加一个Map的构造函数
+        var NameMap ={
+            lihua:'sing',
+            lilei:'dance',
+            lizhi:'rap',
+            name:'name'
+        }
+        function getsomething(name){
+            //name == lihua 输出sing
+            //name == lilei 输出dance
+            //name == lizhi 输出rap
+            console.log(NameMap.name)
+        }
+        getsomething('lizhi')
+
+    </script>
+</body>
+</html>
