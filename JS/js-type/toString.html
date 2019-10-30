@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(Object.prototype.toString.call('123'))
+        console.log(Object.prototype.toString.call(null))
+        console.log(Object.prototype.toString.call(undefined))
+        console.log(Object.prototype.toString.call({}))
+        console.log(Object.prototype.toString.call(new Date()))
+        console.log(Object.prototype.toString.call(/[0-9]/))
+        class A{
+            String1(){
+
+            }
+        }
+        class B extends A{
+
+        }
+        var b = new B()
+        console.log(b)
+        var f = [1,2]
+        console.log(f)
+        //f.__proto__  可以找到toSring
+        //f.__proto__.__proto__   (也可以找到toString) === Object.prototype
+
+
+        var func = function(){lll}
+        console.log(f.toString())
+        console.log(Object.prototype.toString(f))
+        console.log(func.toString())
+        console.log(Object.prototype.toString(func))
+        console.log(Object.prototype)
+
+
+        //万物皆对象
+        //数据类型都是继承自 对象
+        // 对象上面有个toString
+        //各个数据类型上面也有个 toString
+
+        function Bar(){
+            this.abc = 10
+        }
+        Bar.prototype.toFoo = function(){
+            return this.abc * 100
+        }
+        var bar = new Bar()
+        console.log(bar.toFoo())
+        console.log(
+            Bar.prototype.toFoo.call({abc:20})
+        )
+    </script>
+</body>
+</html>
