@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <p>0</p>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        //点击Li输出对应的内容
+       /* const liUrl = doccument.querySelectorAll('li')
+        for(let i = 0;i<liUrl.length;i++){
+            liUrl[i].addEventListener('click',function(){
+                console.log(liUrl[i].innerHTML)
+            })
+        }*/
+
+
+        //事件委托，事件代理
+        //event.target  指的是触发事件 li
+        //event.currenttarget  指的是绑定事件 ul
+        const ul = document.querySelector('ul')
+        ul.addEventListener('click',(event)=>{
+            if(event.target.nodeName == 'LI'){
+                console.log(event.target.innerHTML)
+            }
+        })
+
+        
+    </script>
+</body>
+</html>

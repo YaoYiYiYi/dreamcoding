@@ -27,3 +27,10 @@ vertical-align 左右两个容器怎么对齐 top middle
 
 npm install axios  接口的命令插件  // 非官方的组件使用都要use
 npm install stylus stylus-loader --save-dev  在vue中安装stylus
+
+可以先建立一个stylus文件 在里面建立一个index.styl,将其中所有的其他styl类型文件引入到这个index中
+这样在外面就这需要引入index 这一个就好了  引入格式是  @import '文件地址'
+然后在你要在你要写的文件中，的style中写一下以下代码就可以引入了
+@import '../../common/stylus/index'
+
+style 中的话如果写入 lang="stylus" scoped 接下来的语言就是styl格式，只在这个文件里生效

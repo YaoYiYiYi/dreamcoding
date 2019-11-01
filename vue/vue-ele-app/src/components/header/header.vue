@@ -90,6 +90,7 @@ export default {
             &.guarantee
               bg-image('guarantee_1')
           .text
+            vertical-align top
             font-size 10px
             line-height 12px
 </style>
