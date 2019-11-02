@@ -2,7 +2,7 @@
   "name": "vue-ele-app",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "1140640248@qq.com <1140640248@qq.com>",
+  "author": "",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",

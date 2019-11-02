@@ -34,3 +34,6 @@ npm install stylus stylus-loader --save-dev  在vue中安装stylus
 @import '../../common/stylus/index'
 
 style 中的话如果写入 lang="stylus" scoped 接下来的语言就是styl格式，只在这个文件里生效
+
+Object.assign({},this.seller,res.data.data)表示合并对象
+filter blur(10px)  可以虚化，px 越大就虚化越严重
