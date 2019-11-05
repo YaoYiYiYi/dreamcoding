@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //过程抽象
+
+    //无参化
+
+    function add(a,b,c){
+        console.log(a,b,c)
+    }
+    add(1,2,3)
+    let arr = [1,2,3]
+    //console.log(arr.forEach(add))
+
+    arr.forEach((item,i,arr) => {
+        add(item,i,arr)
+    })
+    //函数是一等公民
+    //函数和其他的变量一样有着同等的地位
+    //item,i,arr
+    console.log([1,2,3].map(parseInt))
+    //parseInt('123px',10) = 123 10,代表进制(只能重2-36进制)
+    parseInt(1,0,[1,2,3]) //0 -> 10
+    parseInt(2,1,[1,2,3]) //1 -> NaN
+    parseInt(3,2,[1,2,3]) //2 -> 2进制 
+    // 代表把xx进制的数转化成10进制的数
+
+    // 所以10进制的1转换成10进制是1
+    // 1进制不存在
+    // 2进制的数不存在3
+    </script>
+</body>
+</html>
