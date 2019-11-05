@@ -37,3 +37,5 @@ style 中的话如果写入 lang="stylus" scoped 接下来的语言就是styl格
 
 Object.assign({},this.seller,res.data.data)表示合并对象
 filter blur(10px)  可以虚化，px 越大就虚化越严重
+
+npm install better-scroll --save 滚动条
