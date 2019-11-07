@@ -16,7 +16,7 @@ http.createServer((req,res) => {
             'Content-Type': 'text/html;utf8'
         })
         fs.createReadStream('./register.html').pipe(res)
-    }else if(urlObj.pathname === '/sendEmail' && method==='POST'){
+    }else if(urlObj.pathname === '/sendEmail' && method==='GET'){
         const emailQs = urlObj.query
         console.log('emailQs',emailQs)
         const email = emailQs.split('=')[1]
