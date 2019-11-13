@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>节流</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #container,#container1{
+      width: 100%;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      color: #fff;
+      background-color: #444;
+      font-size: 30px;
+    }
+    #container1{
+      margin-top: 3px;
+    }
+  </style>
+</head>
+<body>
+  <!-- mouseover resize -->
+  <div id="container"></div>
+  <div id="container1"></div>
+  <script>
+    const container = document.querySelector('#container')
+    // let init = 0
+    // let previous = 0
+
+    /*function buyitnow() {
+      let now = new Date().getTime()
+      if((now - previous)>1000){
+        container.innerHTML = init ++
+        previous = now
+      }
+    }*/
+    // container.onmousemove = buyitnow
+
+    const container1 = document.querySelector('#container1')
+
+    // function addcart() {
+    //   let init = 0
+    //   let previous = 0
+    //  return function(){
+    //     let now = new Date().getTime()
+    //     if((now - previous)>1000){
+    //       container.innerHTML = init ++
+    //       previous = now
+    //     }
+    //   }
+    // }
+
+    // 函数式编程是抽象过程
+    // 高阶函数，输入是函数，输出也是函数
+    // 高阶函数 体现的是 过程抽象
+    // _.throttle 节流函数
+    // container1.onmousemove = _.throttle(addcart,1000)
+    // container1.onmousemove = addcart
+    container1.onmousemove = myThrottle(addcart,1000)
+    function myThrottle(func, wait){
+      let init = 0
+      let previous = 0 
+      return function() {
+        let now = new Date().getTime()
+        if((now - previous)>wait){
+          previous = now
+          func(init)
+        }
+      }
+    }
+      function addcart(init) {
+        container1.innerHTML = init ++
+        console.log('container')
+    }
+  </script>
+</body>
+</html>

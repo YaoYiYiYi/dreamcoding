@@ -10,9 +10,18 @@
   <div id="kolor-kolor"></div>
   <script>
     var observer = new MutationObserver((muationList) => {
-      console.log(muationList)
+      // console.log(muationList)
+      if(muationList[0].type==='attributes'){
+        console.log('attributes change')
+        let color = document.getElementById('kolor-kolor').style.backgroundColor
+        document.querySelectorAll('#kolor-options a').forEach((e)=>{
+          if(e.style.backgroundColor===color){
+            e.click()
+          }
+        })
+      }
     })
-    const targetNode = document.getElementById('kolor-kolor')
+    const targeNode = document.getElementById('kolor-kolor')
     observer.observe(targetNode, {
       attributes: true
     })
