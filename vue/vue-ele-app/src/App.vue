@@ -24,7 +24,8 @@ export default {
   name: 'App',
   data () {
     return {
-      seller: {}
+      seller: {},
+      ratings: {}
     }
   },
   components: {
@@ -36,6 +37,14 @@ export default {
         if (res.data.errno === 0) {
           // this.seller = res.data.data
           this.seller = Object.assign({}, this.seller, res.data.data)
+          console.log(this.seller)
+        }
+      })
+    this.$http.get('http://localhost:8080/static/data/ratings.json')
+      .then((res) => {
+        if (res.data.errno === 0) {
+          this.ratings = Object.assign({}, this.ratings, res.data.data)
+          console.log(this.ratings)
         }
       })
   }
