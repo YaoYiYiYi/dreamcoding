@@ -35,6 +35,13 @@
             <h1 class="name">{{seller.name}}</h1>
             <div class="star-wrapper">
               <!-- 星星 -->
+              <div class="star star-48">
+                <span class="star-item on"></span>
+                <span class="star-item on "></span>
+                <span class="star-item on"></span>
+                <span class="star-item on"></span>
+                <span class="star-item on"></span>
+              </div>
             </div>
             <div class="title">
               <div class="line"></div>
@@ -107,7 +114,6 @@ export default {
       vertical-align top
       img
         border-radius 2px
-
     .content
       display inline-block
       font-size 14px
@@ -122,7 +128,6 @@ export default {
           background-size 30px 18px
           background-repeat no-repeat
           vertical-align middle
-
         .name
           vertical-align middle
           margin-left 6px
@@ -235,6 +240,23 @@ export default {
           font-size 16px
           text-align center
           font-weight 700
+        .star-wrapper
+          margin-top: 18px;
+          padding: 2px 0;
+          text-align: center;
+          .star
+            font-size: 0;
+            .star-item
+              display: inline-block;
+              background-repeat: no-repeat
+              width: 20px;
+              height: 20px;
+              margin-right: 22px;
+              background-size: 20px 20px
+            // .star-item.on
+            //   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAmCAYAAAC29NkdAAAAGXRFW…xD9/3Gsc6subsSqHiPoP6Hao6S24Jr4DYfrJ+g1a7hswADAP0Eerk/kTZKAAAAAElFTkSuQmCC)
+            // .star-item.off
+            //   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAmCAYAAAC29NkdAAAAGXRFW…5W2Rf5bJmdX6wPMoP0h+qQVRGMgZSc3kPDULvXo/IjwADcHoKDst/q9gAAAABJRU5ErkJggg==)
         .title
           display flex
           width 80%
