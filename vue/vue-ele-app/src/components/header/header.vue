@@ -36,11 +36,11 @@
             <div class="star-wrapper">
               <!-- 星星 -->
               <div class="star star-48">
-                <span class="star-item on"></span>
-                <span class="star-item on "></span>
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
-                <span class="star-item on"></span>
+                <span class="star-item" ></span>
+                <span class="star-item"></span>
+                <span class="star-item"></span>
+                <span class="star-item"></span>
+                <span class="star-item"></span>
               </div>
             </div>
             <div class="title">
@@ -85,7 +85,9 @@ export default {
   data () {
     return {
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
-      showDetail: false
+      showDetail: false,
+      // starArry: []
+      score: this.seller.score
     }
   },
   methods: {
@@ -94,6 +96,26 @@ export default {
     },
     hideDetail () {
       this.showDetail = false
+    }
+  },
+  mounted () {
+    let score = Math.floor(this.score)
+    // for (let i = 0; i < 5; i++){
+    //   if(i < score){
+    //     this.starArry.push(1)
+    //   } else {
+    //     this.starArry.push(1)
+    //   }
+    // }
+    let Stararry = document.querySelectorAll('.star-item')
+    console.log(Stararry)
+    for (let i = 0; i < 5; i++) {
+      let name = Stararry[i].className
+      if (i < score) {
+        Stararry[i].className = 'on ' + name
+      } else {
+        Stararry[i].className = 'off ' + name
+      }
     }
   }
 }
@@ -253,10 +275,10 @@ export default {
               height: 20px;
               margin-right: 22px;
               background-size: 20px 20px
-            // .star-item.on
-            //   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAmCAYAAAC29NkdAAAAGXRFW…xD9/3Gsc6subsSqHiPoP6Hao6S24Jr4DYfrJ+g1a7hswADAP0Eerk/kTZKAAAAAElFTkSuQmCC)
-            // .star-item.off
-            //   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAmCAYAAAC29NkdAAAAGXRFW…5W2Rf5bJmdX6wPMoP0h+qQVRGMgZSc3kPDULvXo/IjwADcHoKDst/q9gAAAABJRU5ErkJggg==)
+            .star-item.on
+              background-image: url('../../assets/Star.png')
+            .star-item.off
+              background-image: url('../../assets/Stargray.png')
         .title
           display flex
           width 80%
