@@ -184,7 +184,7 @@ export default {
       this.citybox = false
     },
     complete (e) {
-       this.seriesData = []
+      this.seriesData = []
       this.getCurrentCityData(e[1].name)
       this.citybox = false
     }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="rating">
-      <div class="rating-wrapper">
+      <div class="rating-wrapper" ref="ratingWrapper">
         <div class="overview">
           <div class="overviewleft">
             <div class="score">{{seller.score}}</div>
@@ -11,24 +11,30 @@
           <div class="overviewright">
             <div class="score-wrapper">
               <span class="title">服务态度</span>
-              <div class="star star-36">
+              <!-- <div class="star star-36">
                 <span class="star-item"></span>
                 <span class="star-item"></span>
                 <span class="star-item"></span>
                 <span class="star-item"></span>
                 <span class="star-item"></span>
-              </div>
+              </div> -->
+              <star :name = "name1"
+                    :score = "seller.serviceScore">
+              </star>
               <span class="score">{{seller.serviceScore}}</span>
             </div>
             <div class="score-wrapper">
               <span class="title">商家评分</span>
-              <div class="star star-36">
+              <!-- <div class="star star-36">
                 <span class="star-item"></span>
                 <span class="star-item"></span>
                 <span class="star-item"></span>
                 <span class="star-item"></span>
                 <span class="star-item"></span>
-              </div>
+              </div> -->
+              <star :name = "name1"
+                    :score = "seller.foodScore">
+              </star>
               <span class="score">{{seller.foodScore}}</span>
             </div>
             <div class="delivery-wrapper">
@@ -40,34 +46,36 @@
         <div class="split"></div>
         <div class="ratingSelect">
           <div class="rating-type border-1px">
-            <span class="block positive">
+            <span class="block positive" @click="addclassOne" :class="{'active': addClasses[0]}">
               全部
               <span class="count">{{seller.ratingCount}}</span>
             </span>
-            <span class="block positive">
+            <span class="block positive" @click="addclassTwo" :class="{'active': addClasses[1]}">
               满意
               <span class="count">{{countGood}}</span>
             </span>
-            <span class="block negative">
+            <span class="block negative" @click="addclassThree" :class="{'active': addClasses[2]}">
               不满意
               <span class="count">{{seller.ratingCount-countGood}}</span>
             </span>
           </div>
-          <div class="switch on">
-            <span class="icon-check_circle"></span>
+          <div class="switch" :class="{'on': SelectContentStyle}">
+            <span class="icon-check_circle" @click="selectContent"></span>
             <span class="text">只看有内容的评价</span>
           </div>
         </div>
         <div class="rating-content">
           <ul>
-            <li class="rating-item" v-for="(rating, index) in ratings" :key="index">
+            <li class="rating-item" v-for="(rating, index) in SelectRatings" :key="index">
               <div class="avatar">
                 <img width="28" height="28" :src="rating.avatar" alt="">
               </div>
               <div class="content">
                 <h1 class="name">{{rating.username}}</h1>
                 <div class="star-wrapper">
-                  <div class="star star-24"></div>
+                  <!-- <div class="star star-24"></div> -->
+                  <star :name = "name2"
+                        :score = "rating.score"></star>
                   <span class="delivery">{{rating.deliveryTime}}</span>
                 </div>
                 <p class="text">{{rating.text}}</p>
@@ -86,11 +94,21 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll'
+import star from '@/components/star/star'
 export default {
   data () {
     return {
-      ratings: []
+      ratings: [],
+      name1: 'star-36',
+      name2: 'star-24',
+      SelectContentStyle: false,
+      SelectRatings: [],
+      addClasses: [true, false, false]
     }
+  },
+  components: {
+    star
   },
   props: {
     seller: {
@@ -103,6 +121,13 @@ export default {
       .then(res => {
         if (res.data.errno === 0) {
           this.ratings = res.data.data
+          for (let rating of this.ratings) {
+            rating.rateTime = new Date(parseInt(rating.rateTime))
+          }
+          this.SelectRatings = res.data.data
+          this.$nextTick(() => {
+            this._initScroll()
+          })
         }
       })
   },
@@ -115,6 +140,45 @@ export default {
         }
       }
       return count
+    }
+  },
+  methods: {
+    _initScroll () {
+      const self = this
+      self.ratingScroll = new BScroll(self.$refs.ratingWrapper, {
+        click: true
+      })
+    },
+    // 存放  点击icon只看内容  所需要展示的数据
+    selectContent () {
+      let arr = []
+      this.SelectContentStyle = !this.SelectContentStyle
+      if (this.SelectContentStyle === false) {
+         this.SelectRatings = this.ratings
+      } else {
+        for (let rating of this.ratings)
+          {
+            if(rating.text !== ''){
+              arr.push(rating)
+            }
+          }
+          this.SelectRatings = arr
+      }
+    },
+    addclassOne () {
+      this.addClasses[0] = true
+      this.addClasses[1] = false
+      this.addClasses[2] = false
+    },
+    addclassTwo () {
+      this.addClasses[0] = false
+      this.addClasses[1] = true
+      this.addClasses[2] = false
+    },
+    addclassThree () {
+      this.addClasses[0] = false
+      this.addClasses[1] = false
+      this.addClasses[2] = true
     }
   }
 }
@@ -135,10 +199,10 @@ ul li
       padding 18px 0
       .overviewleft
         -webkit-box-flex: 0
-        flex: 0 0 137px
         padding: 6px 0
         border-right: 1px solid rgba(7,17,27,.1)
         text-align: center
+        flex: 0 0 120px
         .score
           margin-bottom: 6px
           line-height: 28px
@@ -167,18 +231,18 @@ ul li
             vertical-align: top;
             font-size: 12px;
             color: #07111b
-          .star
-            display: inline-block;
-            margin: 0 12px;
-            vertical-align: top
-            font-size: 0
-            .star-item
-              width: 15px
-              height: 15px
-              margin-right: 6px
-              background-size: 15px 15px
-              display: inline-block;
-              background-repeat: no-repeat
+          // .star
+          //   display: inline-block;
+          //   margin: 0 12px;
+          //   vertical-align: top
+          //   font-size: 0
+          //   .star-item
+          //     width: 15px
+          //     height: 15px
+          //     margin-right: 6px
+          //     background-size: 15px 15px
+          //     display: inline-block;
+          //     background-repeat: no-repeat
           .score
             display: inline-block;
             line-height: 18px;
@@ -288,6 +352,15 @@ ul li
             line-height: 12px
             font-size: 10px
             color: #07111b
+          .star-wrapper
+            margin-bottom: 6px
+            font-size: 0
+            .delivery
+              display: inline-block
+              vertical-align: top
+              line-height: 12px
+              font-size: 10px
+              color: #93999f
           .text
             margin-bottom: 8px
             line-height: 18px
