@@ -35,13 +35,15 @@
             <h1 class="name">{{seller.name}}</h1>
             <div class="star-wrapper">
               <!-- 星星 -->
-              <div class="star star-48">
+              <!-- <div class="star star-48">
                 <span class="star-item" ></span>
                 <span class="star-item"></span>
                 <span class="star-item"></span>
                 <span class="star-item"></span>
                 <span class="star-item"></span>
-              </div>
+              </div> -->
+              <!-- <star :score="score"
+                    :name="name"></star> -->
             </div>
             <div class="title">
               <div class="line"></div>
@@ -73,6 +75,7 @@
 </template>
 
 <script>
+import star from '@/components/star/star'
 export default {
   props: {
     seller: {
@@ -82,12 +85,16 @@ export default {
       }
     }
   },
+  components: {
+    star
+  },
   data () {
     return {
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
       showDetail: false,
       // starArry: []
-      score: this.seller.score
+      score: this.seller.score,
+      name: 'star-48'
     }
   },
   methods: {
@@ -99,7 +106,7 @@ export default {
     }
   },
   mounted () {
-    let score = Math.floor(this.score)
+    // let score = Math.floor(this.score)
     // for (let i = 0; i < 5; i++){
     //   if(i < score){
     //     this.starArry.push(1)
@@ -107,16 +114,17 @@ export default {
     //     this.starArry.push(1)
     //   }
     // }
-    let Stararry = document.querySelectorAll('.star-item')
-    console.log(Stararry)
-    for (let i = 0; i < 5; i++) {
-      let name = Stararry[i].className
-      if (i < score) {
-        Stararry[i].className = 'on ' + name
-      } else {
-        Stararry[i].className = 'off ' + name
-      }
-    }
+
+    // let Stararry = document.querySelectorAll('.star-item')
+    // console.log(Stararry)
+    // for (let i = 0; i < 5; i++) {
+    //   let name = Stararry[i].className
+    //   if (i < score) {
+    //     Stararry[i].className = 'on ' + name
+    //   } else {
+    //     Stararry[i].className = 'off ' + name
+    //   }
+    // }
   }
 }
 </script>
@@ -266,19 +274,6 @@ export default {
           margin-top: 18px;
           padding: 2px 0;
           text-align: center;
-          .star
-            font-size: 0;
-            .star-item
-              display: inline-block;
-              background-repeat: no-repeat
-              width: 20px;
-              height: 20px;
-              margin-right: 22px;
-              background-size: 20px 20px
-            .star-item.on
-              background-image: url('../../assets/Star.png')
-            .star-item.off
-              background-image: url('../../assets/Stargray.png')
         .title
           display flex
           width 80%

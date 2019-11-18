@@ -46,15 +46,15 @@
         <div class="split"></div>
         <div class="ratingSelect">
           <div class="rating-type border-1px">
-            <span class="block positive" @click="addclassOne" :class="{'active': addClasses[0]}">
+            <span class="block positive" @click="addclassOne" :class="{'active': classOne}">
               全部
               <span class="count">{{seller.ratingCount}}</span>
             </span>
-            <span class="block positive" @click="addclassTwo" :class="{'active': addClasses[1]}">
+            <span class="block positive" @click="addclassTwo" :class="{'active': classTwo}">
               满意
               <span class="count">{{countGood}}</span>
             </span>
-            <span class="block negative" @click="addclassThree" :class="{'active': addClasses[2]}">
+            <span class="block negative" @click="addclassThree" :class="{'active': classThree}">
               不满意
               <span class="count">{{seller.ratingCount-countGood}}</span>
             </span>
@@ -76,7 +76,7 @@
                   <!-- <div class="star star-24"></div> -->
                   <star :name = "name2"
                         :score = "rating.score"></star>
-                  <span class="delivery">{{rating.deliveryTime}}</span>
+                  <span class="delivery">{{rating.delivery}}</span>
                 </div>
                 <p class="text">{{rating.text}}</p>
                 <div class="recommend" v-if="rating.recommend.length>0">
@@ -100,11 +100,14 @@ export default {
   data () {
     return {
       ratings: [],
+      hasContent: [],
       name1: 'star-36',
       name2: 'star-24',
       SelectContentStyle: false,
-      SelectRatings: [],
-      addClasses: [true, false, false]
+      // SelectRatings: [],
+      classOne: true,
+      classTwo: false,
+      classThree: false
     }
   },
   components: {
@@ -121,10 +124,15 @@ export default {
       .then(res => {
         if (res.data.errno === 0) {
           this.ratings = res.data.data
+          let arr = []
           for (let rating of this.ratings) {
-            rating.rateTime = new Date(parseInt(rating.rateTime))
+            // rating.rateTime = new Date(parseInt(rating.rateTime))
+            if (rating.text !== '') {
+              arr.push(rating)
+            }
           }
-          this.SelectRatings = res.data.data
+          this.hasContent = arr
+          console.log(this.hasContent)
           this.$nextTick(() => {
             this._initScroll()
           })
@@ -140,6 +148,57 @@ export default {
         }
       }
       return count
+    },
+    SelectRatings () {
+      if (this.SelectContentStyle) {
+        if (this.classOne) {
+          // 返回有内容的所有评论
+          // let arr = this.hasContent.map(item => item)
+          return this.hasContent
+        } else if (this.classTwo) {
+          let arr = []
+          for (let rating of this.hasContent) {
+            if (rating.rateType === 0) {
+              arr.push(rating)
+            }
+          }
+          // 返回有内容的好评
+          return arr
+        } else {
+          let arr = []
+          for (let rating of this.hasContent) {
+            if (rating.rateType === 1) {
+              arr.push(rating)
+            }
+          }
+          // 返回有内容的差评
+          return arr
+        }
+      } else {
+        if (this.classOne) {
+          // 返回全部评论
+          // let arr = this.ratings.map(item => item)
+          return this.ratings
+        } else if (this.classTwo) {
+          let arr = []
+          for (let rating of this.ratings) {
+            if (rating.rateType === 0) {
+              arr.push(rating)
+            }
+          }
+          // 返回全部的好评
+          return arr
+        } else {
+          let arr = []
+          for (let rating of this.ratings) {
+            if (rating.rateType === 1) {
+              arr.push(rating)
+            }
+          }
+          // 返回全部差评
+          return arr
+        }
+      }
     }
   },
   methods: {
@@ -151,34 +210,22 @@ export default {
     },
     // 存放  点击icon只看内容  所需要展示的数据
     selectContent () {
-      let arr = []
       this.SelectContentStyle = !this.SelectContentStyle
-      if (this.SelectContentStyle === false) {
-         this.SelectRatings = this.ratings
-      } else {
-        for (let rating of this.ratings)
-          {
-            if(rating.text !== ''){
-              arr.push(rating)
-            }
-          }
-          this.SelectRatings = arr
-      }
     },
     addclassOne () {
-      this.addClasses[0] = true
-      this.addClasses[1] = false
-      this.addClasses[2] = false
+      this.classOne = true
+      this.classTwo = false
+      this.classThree = false
     },
     addclassTwo () {
-      this.addClasses[0] = false
-      this.addClasses[1] = true
-      this.addClasses[2] = false
+      this.classOne = false
+      this.classTwo = true
+      this.classThree = false
     },
     addclassThree () {
-      this.addClasses[0] = false
-      this.addClasses[1] = false
-      this.addClasses[2] = true
+      this.classOne = false
+      this.classTwo = false
+      this.classThree = true
     }
   }
 }

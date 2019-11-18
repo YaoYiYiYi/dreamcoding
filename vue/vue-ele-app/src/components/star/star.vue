@@ -24,10 +24,11 @@ export default {
     }
   },
   created () {
+    // console.log(this.score)
     let score = Math.floor(this.score)
     // let Stararry = document.querySelectorAll('.star-item')
     // console.log(Stararry)
-    // console.log(score)
+    // console.log('score', this.score)
     let arry = []
     for (let i = 0; i < 5; i++) {
     // let name = Stararry[i].className
@@ -69,6 +70,22 @@ export default {
     height: 10px
     margin-right: 3px
     background-size: 10px 10px
+    display: inline-block
+    background-repeat: no-repeat
+  .star-item.on
+    background-image: url('../../assets/Star.png')
+  .star-item.off
+    background-image: url('../../assets/Stargray.png')
+
+.star.star-48
+  font-size: 0;
+  .star-item
+    display: inline-block;
+    background-repeat: no-repeat
+    width: 20px;
+    height: 20px;
+    margin-right: 22px;
+    background-size: 20px 20px
     display: inline-block
     background-repeat: no-repeat
   .star-item.on
