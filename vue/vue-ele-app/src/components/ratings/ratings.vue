@@ -75,8 +75,8 @@
                 <div class="star-wrapper">
                   <!-- <div class="star star-24"></div> -->
                   <star :name = "name2"
-                        :score = "rating.score"></star>
-                  <span class="delivery">{{rating.delivery}}</span>
+                        :score = "starIndex(index)"></star>
+                  <span class="delivery">{{starIndex(index)}}</span>
                 </div>
                 <p class="text">{{rating.text}}</p>
                 <div class="recommend" v-if="rating.recommend.length>0">
@@ -198,6 +198,12 @@ export default {
           // 返回全部差评
           return arr
         }
+      }
+    },
+    starIndex () {
+      let arr = this.SelectRatings
+      return function (index) {
+        return arr[index].score
       }
     }
   },

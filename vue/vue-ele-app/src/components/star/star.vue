@@ -23,23 +23,35 @@ export default {
       stararry: []
     }
   },
+  updated () {
+    // this.star()
+  },
   created () {
-    // console.log(this.score)
-    let score = Math.floor(this.score)
-    // let Stararry = document.querySelectorAll('.star-item')
-    // console.log(Stararry)
-    // console.log('score', this.score)
-    let arry = []
-    for (let i = 0; i < 5; i++) {
-    // let name = Stararry[i].className
-      if (i < score) {
-        arry[i] = 'on '
-      } else {
-        arry[i] = 'off '
-      }
+    // this.star()
+  },
+  watch: {
+    'score': {
+      handler (newName, oldName) {
+        let score = Math.floor(newName)
+        // let Stararry = document.querySelectorAll('.star-item')
+        // console.log(Stararry)
+        // console.log('score', this.score)
+        let arry = []
+        for (let i = 0; i < 5; i++) {
+          // let name = Stararry[i].className
+          if (i < score) {
+            arry[i] = 'on '
+          } else {
+            arry[i] = 'off '
+          }
+        }
+        this.stararry = arry
+        // console.log(arry)
+      },
+      immediate: true
     }
-    this.stararry = arry
-    // console.log(arry)
+  },
+  methods: {
   }
 }
 </script>
