@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld' @代表src
 import Goods from '@/components/goods/goods'
 import Rating from '@/components/ratings/ratings'
+import Seller from '@/components/seller/seller'
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +22,11 @@ export default new Router({
       path: '/ratings',
       name: 'ratings',
       component: Rating
+    },
+    {
+      path: '/seller',
+      name: 'Seller',
+      component: Seller
     }
   ]
 })

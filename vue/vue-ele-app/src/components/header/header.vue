@@ -42,8 +42,8 @@
                 <span class="star-item"></span>
                 <span class="star-item"></span>
               </div> -->
-              <!-- <star :score="score"
-                    :name="name"></star> -->
+              <star :score="seller.score"
+                    :name="name"></star>
             </div>
             <div class="title">
               <div class="line"></div>

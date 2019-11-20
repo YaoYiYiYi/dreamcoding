@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="rating">
       <div class="rating-wrapper" ref="ratingWrapper">
         <div class="overview">
@@ -75,8 +74,8 @@
                 <div class="star-wrapper">
                   <!-- <div class="star star-24"></div> -->
                   <star :name = "name2"
-                        :score = "starIndex(index)"></star>
-                  <span class="delivery">{{starIndex(index)}}</span>
+                        :score = "rating.score"></star>
+                  <span class="delivery">{{rating.delivery}}</span>
                 </div>
                 <p class="text">{{rating.text}}</p>
                 <div class="recommend" v-if="rating.recommend.length>0">
@@ -90,7 +89,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -132,7 +130,7 @@ export default {
             }
           }
           this.hasContent = arr
-          console.log(this.hasContent)
+          // console.log(this.hasContent)
           this.$nextTick(() => {
             this._initScroll()
           })
@@ -149,6 +147,7 @@ export default {
       }
       return count
     },
+    // 筛选数组，进行循环DOM渲染
     SelectRatings () {
       if (this.SelectContentStyle) {
         if (this.classOne) {
@@ -199,22 +198,15 @@ export default {
           return arr
         }
       }
-    },
-    starIndex () {
-      let arr = this.SelectRatings
-      return function (index) {
-        return arr[index].score
-      }
     }
   },
   methods: {
     _initScroll () {
-      const self = this
-      self.ratingScroll = new BScroll(self.$refs.ratingWrapper, {
+      this.ratingScroll = new BScroll(this.$refs.ratingWrapper, {
         click: true
       })
     },
-    // 存放  点击icon只看内容  所需要展示的数据
+    // 存放  点击icon只看内容  显示所需要展示的数据
     selectContent () {
       this.SelectContentStyle = !this.SelectContentStyle
     },
@@ -241,10 +233,12 @@ export default {
 ul li
   list-style: none
 .rating
-  position absolute
-  top 174px
-  bottom 0
-  width 100%
+  position: absolute;
+  top: 174px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden
   .rating-wrapper
     width 100%
     .overview
@@ -270,6 +264,9 @@ ul li
           line-height: 10px
           font-size: 10px
           color: #93999f
+      @media only screen and (max-width: 320px)
+        .overviewright
+          padding-left: 6px
       .overviewright
         -webkit-box-flex: 1
         -ms-flex: 1
