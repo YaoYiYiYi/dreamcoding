@@ -6,7 +6,9 @@ import router from './router'
 import store from './vuex/store'
 import '../static/css/reset.styl'
 import fastclick from 'fastclick'
+
 fastclick.attach(document.body)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -1,5 +1,5 @@
 <template>
-  <div class="seller">
+  <div class="seller" ref="seller">
     <div class="seller-content">
       <div class="overview">
         <div class="title">{{seller.name}}</div>
@@ -53,10 +53,12 @@
       </div>
       <div class="split"></div>
       <div class="pics">
-        <h1 class="title"></h1>
-        <div class="pic-wrapper">
+        <h1 class="title">商家实景</h1>
+        <div class="pic-wrapper" ref="pic">
           <ul class="pic-list">
-            <li class="pic-item"></li>
+            <li class="pic-item" v-for="(item, index) in seller.pics" :key="index">
+              <img :src="item" alt="" width="120" height="90">
+            </li>
           </ul>
         </div>
       </div>
@@ -75,6 +77,7 @@
 
 <script>
 import star from '@/components/star/star'
+import BScroll from 'better-scroll'
 export default {
   name: 'Seller',
   props: {
@@ -95,7 +98,18 @@ export default {
   methods: {
     favorite () {
       this.IFfavorite = !this.IFfavorite
+    },
+    _initScroll () {
+      this.sellerScroll = new BScroll(this.$refs.seller, {
+        click: true
+      })
+      this.picScroll = new BScroll(this.$refs.pic, {
+        click: true
+      })
     }
+  },
+  mounted () {
+    this._initScroll()
   }
 }
 </script>
@@ -108,6 +122,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
+  overflow hidden;
   .seller-content
     .overview
       position: relative

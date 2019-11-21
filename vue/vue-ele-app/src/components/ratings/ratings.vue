@@ -264,9 +264,6 @@ ul li
           line-height: 10px
           font-size: 10px
           color: #93999f
-      @media only screen and (max-width: 320px)
-        .overviewright
-          padding-left: 6px
       .overviewright
         -webkit-box-flex: 1
         -ms-flex: 1
@@ -309,6 +306,8 @@ ul li
             margin-left: 12px;
             font-size: 12px;
             color: #93999f
+        @media only screen and (max-width: 320px)
+          padding-left: 6px
     .split
       width: 100%
       height: 16px

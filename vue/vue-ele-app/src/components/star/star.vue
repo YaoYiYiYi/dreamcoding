@@ -68,6 +68,8 @@ export default {
     background-size: 15px 15px
     display: inline-block
     background-repeat: no-repeat
+    &:last-child
+      margin-right 0
   .star-item.on
     background-image: url('../../assets/Star.png')
   .star-item.off

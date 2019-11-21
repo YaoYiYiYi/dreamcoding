@@ -3,12 +3,12 @@ import axios from 'axios'
 const vue = new Vue()
 
 // axios配置
-axios.defaults.timeout = 10000 // 影响请求的时常，超过10s，就会掐断请求
+axios.defaults.timeout = 10000
 axios.defaults.baseURL = 'http://localhost:3000'
 
-// 判断返回的状态,响应拦截
+// 判断返回状态,响应拦截
 axios.interceptors.response.use((res) => {
-  if(res.data.code !== 200){
+  if (res.data.code !== 200) {
     alert('网络异常')
     return Promise.reject(res)
   }
@@ -24,7 +24,7 @@ export function fetchGet(url, param) {
       params: param
     })
     .then(response => {
-      resolve(response.data) // 抛出数据
+      resolve(response.data)
     }, err => {
       reject(err)
     })
@@ -35,16 +35,20 @@ export function fetchGet(url, param) {
 }
 
 export default {
-  // 登入接口
+  // 用户登录
   Login (params) {
     return fetchGet('/login', params)
   },
-  // banners 轮播图
+  // banners
   BannerList () {
     return fetchGet('/banner')
   },
   // 歌单
-  DiscList (params) {
+  DiscLists (params) {
     return fetchGet('/top/playlist', params)
+  },
+  //热搜榜
+  HotSearchKey () {
+    return  fetchGet('/search/hot')
   }
 }

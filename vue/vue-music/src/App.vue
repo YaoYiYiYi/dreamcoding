@@ -8,16 +8,23 @@
         <i class="icon">&#xe63c;</i>
       </router-link>
     </v-header>
-    <!-- <router-view/> -->
+    <!-- tab -->
+    <v-tab></v-tab>
+    <router-view/>
+    <v-sidebar></v-sidebar>
   </div>
 </template>
 
 <script>
 import header from '@/components/header'
+import sidebar from '@/components/sidebar'
+import tab from '@/components/tab'
 export default {
   name: 'App',
   components: {
-    'v-header': header
+    'v-header': header,
+    'v-sidebar': sidebar,
+    'v-tab': tab
   }
 }
 </script>
@@ -43,5 +50,4 @@ html,body
   -webkit-tap-highlight-color transparent
   background rgba(8, 5, 58, 0.9)
   color #fff
-
 </style>
