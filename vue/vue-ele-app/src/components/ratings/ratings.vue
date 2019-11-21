@@ -1,6 +1,6 @@
 <template>
-    <div class="rating">
-      <div class="rating-wrapper" ref="ratingWrapper">
+    <div class="rating" ref="rating">
+      <div class="rating-wrapper">
         <div class="overview">
           <div class="overviewleft">
             <div class="score">{{seller.score}}</div>
@@ -202,7 +202,7 @@ export default {
   },
   methods: {
     _initScroll () {
-      this.ratingScroll = new BScroll(this.$refs.ratingWrapper, {
+      this.ratingScroll = new BScroll(this.$refs.rating, {
         click: true
       })
     },
