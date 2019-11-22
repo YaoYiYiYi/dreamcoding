@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #container{
+      width: 100%;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      border: 1px solid #000;
+    }
+    #buyItnow{
+      width: 100%;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      border: 1px solid #000;
+      background-color: gold;
+      color:white;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <div id="buyItnow"></div>
+  <script>
+    // const container = document.getElementById('container')
+    // let count = 0
+    // let timeout
+    // function debounce() {
+    //   clearTimeout(timeout)
+    //   timeout = setTimeout(()=>{
+    //     container.innerHTML = count ++
+    //   }, 1000)
+    // }
+    // container.onmousemove = debounce
+
+    const Buy = document.getElementById('buyItnow')
+    Buy.onclick = debounce(buy)
+    function buy() {
+      console.log(123)
+    }
+    // 高阶函数
+    function debounce(func) {
+      let timeout
+      return function() {
+        clearTimeout(timeout)
+        timeout = setTimeout(()=>{
+          func()
+        },1000)
+      }
+    }
+  </script>
+</body>
+</html>
