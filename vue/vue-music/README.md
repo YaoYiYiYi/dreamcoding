@@ -23,3 +23,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 npm install axios --save-dev
 npm install stylus stylus-loader --save-dev
 npm install --save fastclick  让300ms的点击事件，延迟效果取消，他会复制点击事件，先进行事件然后禁止掉真实事件
+
+@click.stop 
