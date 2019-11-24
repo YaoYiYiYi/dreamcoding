@@ -35,7 +35,7 @@
         </ul>
         <div class="favorite"  @click="favorite">
           <span class="icon-favorite" :class="{'active':IFfavorite}"></span>
-          <span class="text">收藏</span>
+          <span class="text">{{IFfavorite?'已收藏':'收藏'}}</span>
         </div>
       </div>
       <div class="split"></div>
@@ -55,7 +55,7 @@
       <div class="pics">
         <h1 class="title">商家实景</h1>
         <div class="pic-wrapper" ref="pic">
-          <ul class="pic-list">
+          <ul class="pic-list" ref="picList">
             <li class="pic-item" v-for="(item, index) in seller.pics" :key="index">
               <img :src="item" alt="" width="120" height="90">
             </li>
@@ -101,15 +101,24 @@ export default {
     },
     _initScroll () {
       this.sellerScroll = new BScroll(this.$refs.seller, {
-        click: true
+        click: true,
+        probeType: 3
       })
       this.picScroll = new BScroll(this.$refs.pic, {
-        click: true
+        click: true,
+        scrollX: true,
+        scrollY: false,
+        probeType: 3
       })
     }
   },
+  created () {
+    this.$nextTick(() => {
+      this._initScroll()
+    })
+  },
   mounted () {
-    this._initScroll()
+    this.$refs.picList.style.width = 126 * this.seller.pics.length + 'px'
   }
 }
 </script>

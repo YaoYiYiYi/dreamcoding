@@ -82,21 +82,63 @@ export default {
       if (!this.$refs.wrapper) {
         return
       }
-      this.Scroll = new BScroll(this.$refs.wrapper, {
+      this.scroll = new BScroll(this.$refs.wrapper, {
         click: this.click,
         probeType: this.probeType,
         eventPassthrough: this.direction === DIRECTION_V ? DIRECTION_H : DIRECTION_V
       })
 
-      if (this.Scroll) {
-        this.Scroll.on('scroll', (pos) => {
+      if (this.listenScroll) {
+        this.Sscroll.on('scroll', (pos) => {
           this.$emit('scroll', pos)
         })
       }
+      // 派发上拉 加载更多
+      if (this.pullup) {
+        this.scroll.on('scrollEnd', () => {
+          // y是负值，所以是<=
+          if (this.scroll.y<=(this.scroll.maxScrollY + 50)) {
+            this.$emit('scrollToEnd')
+          }
+        })
+      }
+
+      // 派发下拉 刷新
+      if (this.pulldown) {
+        this.scroll.on('touchend', () => {
+          if (pos.y > 50) {
+            this.$emit('pulldown')
+          }
+        })
+      }
+
+      // 是否派发列表滚动开始事件
+      if (this.beforeScroll) {
+        this.scroll.on('beforeScrollStart', () => {
+          this.$emit('beforeScroll')
+        })
+      }
     },
-    refresh () {
+    disable() {
+      // 代理better-scroll的disable方法
+      this.scroll && this.scroll.disable()
+    },
+    enable() {
+      // 代理better-scroll的enable方法
+      this.scroll && this.scroll.enable()
+    },
+    refresh() {
+      // 代理better-scroll的refresh方法
       this.scroll && this.scroll.refresh()
       // if(this.srcoll){this.scroll.refresh}
+    },
+    scrollTo() {
+      // 代理better-scroll的scrollTo方法
+      this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+    },
+    scrollToElement() {
+      // 代理better-scroll的scrollToElement方法
+      this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
     }
   },
   watch: {

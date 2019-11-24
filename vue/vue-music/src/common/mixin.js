@@ -19,13 +19,15 @@ export const searchMixin = {
     },
     // 调用vuex的方法
     saveSearch (song) {
-      this.$refs.searchBox.setQuery(song)
+      // this.$refs.searchBox.setQuery(song)
       if(this.query){
         this.saveSearchHistory(this.query)
       }
+      this.selectPlaySong(song)
     },
     // 删除全部的数据
     ...mapActions([
+      'selecPlaySong',
       'saveSearchHistory',
       'deleteSearchHistory',
       'deleteAll'
