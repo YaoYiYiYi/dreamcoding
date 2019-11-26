@@ -11,6 +11,5 @@ class Solution:
         maxNum = max(sum, maxNum)
         # len
       return maxNum
-
 solution = Solution()
 print(solution.maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))

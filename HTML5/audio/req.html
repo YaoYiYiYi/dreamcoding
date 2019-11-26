@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .box{
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #000;
+    }
+    .box2{
+      top: 70px;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="box2"></div>
+  <script>
+    var box = document.querySelector('.box')
+    var box2 = document.querySelector('.box2')
+
+    var dis = 0, timer = 0
+    timer = setInterval(function() {
+      if(dis >= 500) clearInterval(timer)
+      box.style.left = ++ dis +'px'
+    }, 16)
+
+    var dis = 0
+    function animation() {
+      requestAnimationFrame(function() {
+        if(dis <= 500) animation()
+        box2.style.left = ++ dis +'px'
+      })
+    }
+    animation()
+  </script>
+</body>
+</html>
