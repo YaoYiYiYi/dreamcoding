@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="list"></ul>
+  <script>
+    let msgList = [{msg: '1'}]
+    function h() {
+      document.getElementById('list').innerHTML = msgList.map((item) => {
+        return `<li>${item.msg}</li>`
+      }).join('')
+    }
+    // Array.prototype.push
+    const originPush = Array.prototype.push
+    Array.prototype.push = function(...arguments) {
+      // 1
+      console.log(this)
+      // console.log(arguments)
+      console.log('i konw have change')
+      // 2
+      originPush.apply(this, arguments)
+      h()
+    }
+    msgList.push({msg:2})
+    msgList.push({msg:3})
+
+    Array.prototype.reserverJoin = function () {
+      let arr = this
+      let str = ''
+      for(let i = arr.length-1; i>=0 ;i--){
+        str+= arr[i].toString()
+      }
+      return str
+    }
+
+    let arr = [1, 2, 3, 4]
+    console.log(arr.reserverJoin()) // '4321'
+  </script>
+</body>
+</html>
