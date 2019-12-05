@@ -15,7 +15,7 @@
             <div class="sign" @click="register">注册</div>
             <span class="badge-img">+</span>
         </div>
-        <p class="register" @click="login">已经有账号了？点击登录</p>
+        <p class="register" @click="login">已经有账号,点击登录</p>
     </div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
     register () {
       if (this.nickname.trim() === '' || this.username.trim() === '' || this.userpwd.trim() === '') {
         this.$toast('昵称或者账号密码不能为空')
+        return
       }
       this.$http({
         method: 'post',
@@ -42,7 +43,17 @@ export default {
           userpwd: this.userpwd.trim(),
           nickname: this.nickname.trim()
         }
-      }).then(res => {})
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.$toast(res.data.mess)
+          this.$router.push({path: 'StarLogin'})
+        } else {
+          this.$toast(res.data.mess)
+        }
+      })
+    },
+    login () {
+      this.$router.push({path: 'StarLogin'})
     }
   }
 }
@@ -59,6 +70,7 @@ input {
   background: #fff;
   padding: 0 1.28rem;
   overflow: hidden;
+  box-sizing: border-box;
   h1 {
     margin-top: 1.12rem;
     height: 0.693333rem;
