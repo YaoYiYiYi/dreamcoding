@@ -6,6 +6,9 @@ import StarLogin from '@/components/login/StarLogin'
 import StarRegister from '@/components/register/StarRegister'
 import NoteClass from '@/components/noteClass/noteClass'
 import NoteList from '@/components/noteList/noteList'
+import NoteDetail from '@/components/noteDetail/noteDetail'
+import PublishNote from '@/components/publishNote/publishNote'
+
 Vue.use(Router)
 
 export default new Router({
@@ -19,7 +22,7 @@ export default new Router({
       }
     },
     {
-      path: '/StarBanner',
+      path: '/starBanner',
       name: 'StarBanner',
       component: StarBanner,
       meta: {
@@ -27,7 +30,7 @@ export default new Router({
       }
     },
     {
-      path: '/StarLogin',
+      path: '/starLogin',
       name: 'StarLogin',
       component: StarLogin,
       meta: {
@@ -35,7 +38,7 @@ export default new Router({
       }
     },
     {
-      path: '/StarRegister',
+      path: '/starRegister',
       name: 'StarRegister',
       component: StarRegister,
       meta: {
@@ -43,7 +46,7 @@ export default new Router({
       }
     },
     {
-      path: '/NoteClass',
+      path: '/noteClass',
       name: 'NoteClass',
       component: NoteClass,
       meta: {
@@ -51,11 +54,27 @@ export default new Router({
       }
     },
     {
-      path: '/NoteList',
+      path: '/noteList',
       name: 'NoteList',
       component: NoteList,
       meta: {
         title: '笔记列表'
+      }
+    },
+    {
+      path: '/noteDetail',
+      name: 'NoteDetail',
+      component: NoteDetail,
+      meta: {
+        title: '笔记详情'
+      }
+    },
+    {
+      path: '/publishNote',
+      name: 'PublishNote',
+      component: PublishNote,
+      meta: {
+        title: '增添笔记'
       }
     }
   ]

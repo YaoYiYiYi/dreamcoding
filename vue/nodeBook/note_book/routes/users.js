@@ -91,7 +91,7 @@ router.post('/userRegister', async(ctx, next) => {
         if (res.affectedRows) {
           r = 'ok'
           ctx.body = {
-            code: 200,
+            code: '200',
             data: '',
             mess: '注册成功'
           }
@@ -117,7 +117,7 @@ router.post('/userRegister', async(ctx, next) => {
 
 // 根据分类查找
 router.post('/findNoteListBytype', async(ctx, next) => {
-  let note_type = ctx.request.body.note_type
+  let note_type = ctx.request.body.noteType
   // console.log(note_type)
   await userServices.findNoteListByType(note_type).then(async (res) => {
     let r = ''
@@ -131,7 +131,7 @@ router.post('/findNoteListBytype', async(ctx, next) => {
     }else {
       r = 'error',
       ctx.body = {
-        code: 400,
+        code: '400',
         data: r,
         mess: '查询失败'
       }
@@ -141,6 +141,33 @@ router.post('/findNoteListBytype', async(ctx, next) => {
     ctx.body = {
       code: '500',
       data: err
+    }
+  })
+})
+// 根据id 查找对应的笔记详情
+router.post('/findNoteDetailById', async(ctx, next)=> {
+  let id = ctx.request.body.id
+  await userServices.findNoteDetailById(id).then(async(res)=>{
+    let r = ''
+    if(res.length){
+      ctx.body = {
+        code: '200',
+        data: res[0],
+        mess: '查找成功'
+      }
+    } else {
+      r = 'error',
+      ctx.body = {
+        code: '404',
+        data: r,
+        mess: '查找失败'
+      }
+    }
+  })
+  .catch((error) => {
+    ctx.body = {
+      code: '8000',
+      data: error
     }
   })
 })

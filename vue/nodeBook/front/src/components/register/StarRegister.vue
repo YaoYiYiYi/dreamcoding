@@ -44,7 +44,7 @@ export default {
           nickname: this.nickname.trim()
         }
       }).then(res => {
-        if (res.data.code === 200) {
+        if (res.data.code === '200') {
           this.$toast(res.data.mess)
           this.$router.push({path: 'StarLogin'})
         } else {

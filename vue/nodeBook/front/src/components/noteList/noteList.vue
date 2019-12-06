@@ -1,7 +1,7 @@
 <template>
   <div class="note-list">
     <ul>
-      <li v-for="(item, index) in noteList" :key="index">
+      <li v-for="(item, index) in noteList" :key="index" @click="noteDetail(item.id)">
         <div class="img">
           <img :src="item.head_img" alt />
         </div>
@@ -30,22 +30,25 @@ export default {
   },
   methods: {
     initNoteClass () {
-      let note_type = this.$route.query.title
+      let noteType = this.$route.query.title
       // console.log(note_type)
       this.$http({
         method: 'post',
         url: 'http://localhost:3000/users/findNoteListBytype',
         data: {
-          note_type: note_type
+          noteType: noteType
         }
       }).then(res => {
-        // console.log(res);
-        if (res.data.code === "200") {
-          this.noteList = res.data.data;
+        console.log(res)
+        if (res.data.code === '200') {
+          this.noteList = res.data.data
         } else {
-          this.$toast(res.data.mess);
+          this.$toast(res.data.mess)
         }
       })
+    },
+    noteDetail (id) {
+      this.$router.push({path: '/noteDetail', query: {'id': id}})
     }
   }
 
