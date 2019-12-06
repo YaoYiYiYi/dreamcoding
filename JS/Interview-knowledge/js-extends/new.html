@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Person(name) {
+      this.age = 30
+      this.name = name
+      return {a:1,b:2,c:3}
+    }
+    Person.prototype.say = () => {
+      console.log('say')
+    }
+    var s = new Person(4)
+    console.log(s)
+
+    function myNew(constructor, ...args) {
+      // 1.
+      let obj = {}
+      // 2.看看是否有返回值
+      let ret = constructor.apply(obj,args)
+      // 3.
+      obj.__proto__ = constructor.prototype
+      // 4.注意返回值
+      return ret===null? obj:ret
+    }
+    var s1 = myNew(Person, 4)
+    console.log(s1)
+    
+    let obj1 = {
+      abc:1
+      // _fn_: fn 执行fn的this指向 obj1
+    }
+    function fn() {
+      console.log(this.abc)
+      return true
+    }
+    function mycall(fn,obj) {
+      obj._fn_ = fn
+      let ret = obj._fn_()
+      delete obj._fn_
+      return ret===null?'':ret
+    }
+    console.log(mycall(fn,obj1))
+  </script>
+</body>
+</html>
