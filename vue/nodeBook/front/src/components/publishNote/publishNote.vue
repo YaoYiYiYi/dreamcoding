@@ -30,7 +30,7 @@
         cancel-text="取消"
         @cancel="onCancel"/>
       </div>
-      <div class="publish-btn">发布笔记</div>
+      <div class="publish-btn" @click="publish">发布笔记</div>
     </div>
   </div>
 </template>
@@ -112,8 +112,8 @@ export default {
     onEditorChange (e) {
 
     },
-    onRead () {
-
+    onRead (file) {
+      this.preImg = file.content
     },
     onSelect (item) {
       // console.log(item)
@@ -125,6 +125,29 @@ export default {
     },
     SelectType () {
       this.show = true
+    },
+    publish () {
+      let userData = JSON.parse(sessionStorage.userInfo)
+      this.$http({
+        method: 'post',
+        url: 'http://localhost:3000/users/insertNote',
+        data: {
+          note_content: this.content,
+          head_img: this.preImg,
+          title: this.title,
+          note_type: this.selectCon,
+          userId: userData.id,
+          nickname: userData.nickname
+        }
+      }).then(res => {
+        console.log(res)
+        if (res.data.code === '200') {
+          this.$toast(res.data.mess)
+          this.$router.push({path: '/noteClass'})
+        } else {
+          this.$toast(res.data.mess)
+        }
+      })
     }
   }
 }
