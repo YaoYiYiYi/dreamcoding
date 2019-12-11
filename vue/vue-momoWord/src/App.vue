@@ -1,12 +1,17 @@
 <template>
   <div id="app">
+    <i-footer></i-footer>
     <router-view/>
   </div>
 </template>
 
 <script>
+import iFooter from './components/footer'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    iFooter
+  }
 }
 </script>
 
@@ -15,8 +20,7 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+  width: 100%;
 }
 </style>
