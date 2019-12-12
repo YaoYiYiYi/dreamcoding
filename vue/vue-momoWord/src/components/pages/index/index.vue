@@ -27,8 +27,20 @@
         </div>
       </div>
       <div class="huxian"></div>
-      <div class="btn">开始学习</div>
+      <div class="btn" @click="learning">开始学习</div>
       <div class="foot"></div>
+    </div>
+    <div class="word-header">
+      <div class="word-header-icon"></div>
+      <div class="word-header-content">
+        <div class="word-title">possess</div>
+        <div class="word-pho">
+          <div class="word-pho-title">英 [pəˈzes]</div>
+          <div class="vioce-icon">
+            <img src="" alt="">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +49,12 @@
 export default {
   data () {
     return {
-      Starting: true
+      Starting: false
+    }
+  },
+  methods: {
+    learning () {
+      this.Starting = false
     }
   }
 }
@@ -149,4 +166,16 @@ html, body{
   text-align: center;
   background-color: #42c594;
 }
+.word-header{
+  width: 100%;
+  height: 100px;
+  display: flex;
+}
+.word-header-content{
+  margin: 0 auto;
+  margin-top: 34px;
+  background-color: #fff;
+}
+
+
 </style>

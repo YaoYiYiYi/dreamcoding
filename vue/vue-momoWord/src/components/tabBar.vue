@@ -1,8 +1,8 @@
 <template>
-  <div class="footer">
-    <div class="foot-item" v-for="(item,index) in Iconlist" :key="index" @click="goPages(index)">
-      <div class="foot-content">
-        <img :src="item.url" alt="">
+  <div class="tabBar">
+    <div class="tab-item" v-for="(item,index) in Iconlist" :key="index" @click="goPages(index)">
+      <div class="tab-content">
+        <img :src="index===IconIndex?item.url1:item.url" alt="">
         <div class="title">{{item.title}}</div>
       </div>
    </div>
@@ -15,34 +15,40 @@ export default {
     return {
       Iconlist: [
         {
-          url: require('../assets/footer/xuexi1.png'),
+          url: require('../assets/tabBar/xuexi.png'),
+          url1: require('../assets/tabBar/xuexi1.png'),
           title: '学习'
         },
         {
-          url: require('../assets/footer/tongji.png'),
+          url: require('../assets/tabBar/tongji.png'),
+          url1: require('../assets/tabBar/tongji1.png'),
           title: '统计'
         },
         {
-          url: require('../assets/footer/translation.png'),
+          url: require('../assets/tabBar/translation.png'),
+          url1: require('../assets/tabBar/translation1.png'),
           title: '翻译'
         },
         {
-          url: require('../assets/footer/shezhi.png'),
+          url: require('../assets/tabBar/shezhi.png'),
+          url1: require('../assets/tabBar/shezhi1.png'),
           title: '设置'
         }
-      ]
+      ],
+      IconIndex: 0
     }
   },
   methods: {
     goPages (index) {
-      console.log(index)
+      // console.log(index)
+      this.IconIndex = index
     }
   }
 }
 </script>
 
 <style>
-.footer{
+.tabBar{
   height: 50px;
   width: 100%;
   position: absolute;
@@ -51,21 +57,21 @@ export default {
   display: flex;
   background-color: #fff;
 }
-.foot-item{
+.tab-item{
   flex: 1;
   height: 50px;
   font-size: 12px;
   color: #bfbfbf;
   position: relative;
 }
-.foot-content{
+.tab-content{
   position: absolute;
   margin-top: 5px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
 }
-.foot-item img{
+.tab-item img{
   height: 25px;
   width: 25px;
   display: inline-block;

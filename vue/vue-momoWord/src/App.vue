@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <i-footer></i-footer>
+    <tabBar></tabBar>
     <router-view/>
   </div>
 </template>
 
 <script>
-import iFooter from './components/footer'
+import tabBar from './components/tabBar'
 export default {
   name: 'App',
   components: {
-    iFooter
+    tabBar
   }
 }
 </script>
