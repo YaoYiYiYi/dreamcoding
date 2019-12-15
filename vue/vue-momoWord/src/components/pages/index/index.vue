@@ -30,14 +30,16 @@
       <div class="btn" @click="learning">开始学习</div>
       <div class="foot"></div>
     </div>
-    <div class="word-header">
-      <div class="word-header-icon"></div>
-      <div class="word-header-content">
-        <div class="word-title">possess</div>
-        <div class="word-pho">
-          <div class="word-pho-title">英 [pəˈzes]</div>
-          <div class="vioce-icon">
-            <img src="" alt="">
+    <div class="word">
+      <div class="word-header">
+        <div class="word-header-icon"></div>
+        <div class="word-header-content">
+          <div class="word-title">possess</div>
+          <div class="word-pho">
+            <div class="word-pho-title">英 [pəˈzes]</div>
+            <div class="vioce-icon">
+              <img src="" alt="">
+            </div>
           </div>
         </div>
       </div>
@@ -170,12 +172,21 @@ html, body{
   width: 100%;
   height: 100px;
   display: flex;
+  background-color: #42c594;
+  position: relative;
 }
 .word-header-content{
   margin: 0 auto;
   margin-top: 34px;
-  background-color: #fff;
+  background-color: yellow;
 }
-
-
+.word-header-icon{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  transform: rotate(45deg);
+  border: 1px solid #a7ebd1;
+  left: 20px;
+  bottom: 33px;
+}
 </style>
