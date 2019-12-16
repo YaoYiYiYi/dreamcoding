@@ -38,11 +38,18 @@
           <div class="word-pho">
             <div class="word-pho-title">英 [pəˈzes]</div>
             <div class="vioce-icon">
-              <img src="" alt="">
+              <img :src="sound" alt="">
             </div>
           </div>
         </div>
       </div>
+      <div class="word-mask" @click="goContent" v-show="hideContent">
+        <div class="word-mask-p">
+          <p class="word-mask-one">请把英文发音和中文意思说出口</p>
+          <p class="word-mask-two">点击屏幕显示答案</p>
+        </div>
+      </div>
+      <div class="word-content"></div>
     </div>
   </div>
 </template>
@@ -51,12 +58,17 @@
 export default {
   data () {
     return {
-      Starting: false
+      Starting: false,
+      sound: require('../../../assets/yinliang.png'),
+      hideContent: true
     }
   },
   methods: {
     learning () {
       this.Starting = false
+    },
+    goContent () {
+      this.hideContent = false
     }
   }
 }
@@ -178,8 +190,24 @@ html, body{
 .word-header-content{
   margin: 0 auto;
   margin-top: 34px;
-  background-color: yellow;
+  color: #a7ebd1;
+  text-align: center;
 }
+.word-header-content .word-title{
+  font-size: 24px;
+}
+.word-pho{
+    font-size: 12px;
+    margin-top: 6px;
+    display: flex;
+    padding: 0 6px 0 6px;
+}
+.vioce-icon img{
+  height: 15px;
+  width: 15px;
+  margin-left: 5px;
+}
+
 .word-header-icon{
   position: absolute;
   width: 15px;
@@ -188,5 +216,22 @@ html, body{
   border: 1px solid #a7ebd1;
   left: 20px;
   bottom: 33px;
+  border-top:transparent;
+  border-right: transparent;
+}
+.word-mask{
+  width: 100%;
+  height: calc(100vh - 150px);
+  text-align: center;
+  position: relative;
+}
+.word-mask-p{
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 20px;
+  /* color: white; */
 }
 </style>
