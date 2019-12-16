@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Function.prototype.myBind = function (oThis,...args) {
+      // console.log(this) this是指向调用它的函数
+      var fToBind = this // 绑定调用的函数
+      var fBound = function(...brgs) {
+        console.log(args.concat(brgs))
+        // 绑定 this的时候没有绑定优先级
+        // 判断是否被new 调用了, 如果被new调用了，那就指向被new调用的实例
+        let isNew = this instanceof fBound
+        return fToBind.apply(isNew ? this : oThis, args.concat(brgs))
+      }
+       // fBound 没有prototypr.abc
+        // 继承一下
+      fBound.prototype = Object.create(this.prototype)
+      return fBound
+    }
+    function Sum(a,b,c) {
+      this.abc = 123
+      return a + b + c
+    }
+    let obj = {}
+    // 输入和输出
+    var a = Sum.myBind(obj, 1)
+    let c = new a()
+    console.log('原型对象', a.prototype)
+    console.log(obj)
+    console.log(a(2,3))
+  </script>
+</body>
+</html>

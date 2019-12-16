@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Function.prototype.myBind = function (oThis,...args) {
+      // console.log(this) this是指向调用它的函数
+      var fToBind = this // 绑定调用的函数
+      var fBound = function() {
+        fToBind.apply(oThis)
+        fToBind(args)
+      }
+      return fBound
+    }
+    function Sum(a,b,c) {
+      return a + b + c
+    }
+    // 输入和输出
+    var a = Sum.myBind(null, 1)
+    // 因为Bind是函数自带的方法
+  </script>
+</body>
+</html>
