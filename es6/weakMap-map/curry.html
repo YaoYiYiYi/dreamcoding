@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
+  <script>
+    function sum(a, b, c) {
+      return a + b + c
+    }
+    // const add30 = sum.bind(null,10,20)
+    // console.log(add30(20))
+    // bind 分为两次
+    // curry 0~方法名.length
+    const sumCurry = _.curry(sum)
+    const add10 = sumCurry(10)
+    const add30 = add10(20)
+    console.log(add30(20))
+    console.log(sumCurry(10)(20)(30))
+    // 如果一个函数所接受的参数量如果 已经= 函数所需要的就返回值，否则就继续传，接受参数
+    function myCurry (func) {
+      let len = func.length
+      const _curry = function(...args) {
+        if(args.length >= len){
+          return func(...args)
+        }
+        return function (...parms) {
+          let arry = [...args,...parms]
+          if(arry.length === len){
+            return func(...arry)
+          } else {
+            return _curry(...arry)
+          }
+        }
+      }
+      return _curry
+    }
+    const sum1 = myCurry(sum)
+    console.log(sum1(10)(23)(1))
+  </script>
+</body>
+</html>
