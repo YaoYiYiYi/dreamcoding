@@ -49,7 +49,22 @@
           <p class="word-mask-two">点击屏幕显示答案</p>
         </div>
       </div>
-      <div class="word-content"></div>
+      <div class="word-content">
+        <div class="word-explain">
+          [动] 解释;说明;阐明;说明(…的)原因
+          <img :src="write" class="word-explain-icon" alt="" width="18" height="18">
+        </div>
+        <div class="word-content-scroll" ref="wordContent">
+          <div class="example-sentence">
+            例句
+            <img :src="xuanze" class="example-sentence-icon" alt="" width="18" height="18">
+          </div>
+          <div class="example-content">
+            <p>Learn vocabulary by reading, hearing and viewing words and example sentences. </p>
+            <p>通过阅读，听和浏览单词和例句来掌握词汇</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -60,7 +75,9 @@ export default {
     return {
       Starting: false,
       sound: require('../../../assets/yinliang.png'),
-      hideContent: true
+      hideContent: true,
+      write: require('../../../assets/write.png'),
+      xuanze: require('../../../assets/xuanze.png')
     }
   },
   methods: {
@@ -233,5 +250,22 @@ html, body{
   transform: translate(-50%,-50%);
   font-size: 20px;
   /* color: white; */
+}
+.word-content{
+  height: calc(100vh - 150px);
+  width: 100%;
+}
+.word-explain{
+  height: 50px;
+  width: 100%;
+  padding: 0 18px;
+  background-color: #42c594;
+  margin-top: 1px;
+  display: flex;
+  text-align: center;
+  line-height: 50px;
+}
+.word-explain img{
+float: right;  
 }
 </style>
