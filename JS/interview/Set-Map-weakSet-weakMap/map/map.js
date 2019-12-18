@@ -50,8 +50,67 @@ console.log(map1)  // 对不同对象的引用, 在map结构中视为两个键
 
 let map2 = new Map()
 map2.set(-0,123)
-console.log(map2.get(+0)) // 说明对于map来说Numbel类型 +0和-0是一样的，但是+1和-1是不一样的
+map2.get(+0) // 说明对于map来说Numbel类型 +0和-0是一样的，但是+1和-1是不一样的
 map2.set(true,1)
 map2.set('true',2)
-console.log(map2.get(true)) // String和boor是不一样的
+map2.get(true) // String和boor是不一样的
 // undefined 和 null也是不一样的  NAN也可以作为key值
+
+// 实例属性和操作方法
+const map11 = new Map()
+// map11.set('foo', true)
+// map11.set('bar', false)
+map11.set('abc', 123)
+map11.set(22, 'abc')
+map11.set(undefined, NaN)
+// console.log(map11.size)
+// console.log(map11.get(123))
+// map11.delete(22)
+// map11.clear()
+console.log(map11)
+
+
+// 遍历 
+// map数据结构的时候的遍历顺序 一定会按照数据本身的顺序进行
+const map3 = new Map([
+  ['foo', 'no'],
+  ['bar', 'yes']
+])
+console.log(map3.keys()) // 就是map类型的key值
+// for of 遍历的是带有迭代器的
+for(let key of map3.keys()) {
+ // console.log(key)
+}
+for(let value of map3.values()){
+  // console.log(value)
+}
+for(let item of map3.entries()){
+  console.log(item[0], item[1])
+  console.log(item)
+}
+console.log([...map3])
+// map33.prototype[Symbol.iterator] === map.prototype.entries 所以map33和map33.entries()是一样的
+map3.forEach((value, key, map) => {
+  console.log(key + ':' +value, map)
+}) // forEach可以用 但是map方法会报错
+
+
+// 类型转换
+// Map => 对象
+function setMapToObj (strMap) {
+  let obj = Object.create(null)
+  for( let [k,v] of strMap) {
+    obj[k] = v
+  }
+  return obj
+}
+function setObjToMap (obj1) {
+  let map4 = new Map()
+  // for(let item in obj1){
+  for(let item of Object.keys(obj1)) {
+    console.log(item, obj1[item])
+    map4.set(item, obj1[item])
+  }
+  return map4
+}
+console.log(setObjToMap({a:1,b:2}))
