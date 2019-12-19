@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // ['baidu.com', 'baiduc.com/1','baidu.com/2']
+    history.pushState({},'','/url1')
+    history.pushState({},'','/url2')
+    history.pushState({},'','/url3')
+    history.go(-2)
+    history.forward()
+    history.back()
+    history.replaceState({},'','url0')
+    setTimeout(()=> {
+      history.pushState({},'','/url4')
+    },3000)
+  </script>
+</body>
+</html>
