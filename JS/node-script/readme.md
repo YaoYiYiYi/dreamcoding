@@ -1,0 +1,3 @@
+- npm i shelljs -D
+- npm i node-schedule -S
+- npm install moment --save
