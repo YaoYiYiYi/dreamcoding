@@ -8,7 +8,7 @@ const book: string = "深入浅出 TypeScript"
 function use(): void {
   console.log('wn')
 }
-const a:void = undefined
+const aaa:void = undefined
 const b:null = null
 
 let u: undefined = undefined
