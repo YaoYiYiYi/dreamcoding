@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let data = {
+      name: 123
+    }
+    this.name = 456
+    data.age = 18
+    // 模板要知道 name什么被改的
+
+    // 第三个参数是 数据描述                       
+    Object.defineProperty(data, 'sex', {
+      enumerable: false, // 是否可以被枚举 就是是否可以被遍历
+      writable: false, // 是否可以被改写
+      value: 'boy'
+    })
+    data.name = 'girl' // 无效的，因为数据被defineProperty监控，无法改变
+    console.log(data.sex)
+    for( let key in data) {
+      console.log(key)
+    }
+
+    let data1 = {
+      _name1: undefined,
+      get name1 () {
+        return this._name1
+      },
+      set name1 (val) {
+        this._name1 = val
+      }
+    }
+    // console.log(data1.name1)
+    // get和set是哪里来的
+
+    // defineProperty 定义属性 1:value 2:get/st
+    // 第三个参数是 get set方法
+    Object.defineProperty(data, 'name1', {
+      get: function () {
+        return data._name1
+      },
+      set: function (val) {
+        console.log('被重新渲染')
+        data._name1 = val
+      }
+    })
+    data.name1 = 'abcd'
+
+
+
+
+    let data3 = {
+      list: [1,2,3,4]
+    }
+    // data3.list.push(5) // 会刷新渲染
+    // 数组怎么监听 改变
+
+  </script>
+</body>
+</html>
