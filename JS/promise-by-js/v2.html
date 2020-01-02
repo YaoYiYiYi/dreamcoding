@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const PENDING = 'PENDING'
+    const RESOLVED = 'RESOLVED'
+    const REJECTED = 'REJECRED'
+
+    function Mypromise(cb) {
+      let self = this
+      this.status = PENDING
+      function resolve(val) {
+        // console.log(val)
+        self.data = val
+        self.status = RESOLVED
+        // 执行 then里面的回调
+        self.onResolve && self.onResolve(val)
+      }
+      cb(resolve)
+    }  
+    Mypromise.prototype.then = function(onResolve) {
+      if(this.status === RESOLVED) {
+        onResolve(this.data)
+      }
+      if(this.status === PENDING) {
+        // this.then(onResolve)
+        //告诉构造函数里面的 resoleve
+        this.onResolve = onResolve
+      }
+    }
+
+    let p = new Mypromise((resolve)=> {
+      setTimeout(()=> {
+        resolve(123)
+      },3000)
+    })
+    p.then(res=> {
+      console.log(res)
+    })
+  </script>
+</body>
+</html>

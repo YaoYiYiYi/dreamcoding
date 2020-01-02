@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function readFile(path, fn) {
+      setTimeout(()=>{
+        fn('文件不存在')
+      },3000)
+    }
+    readFile('./js', (data) => {
+      console.log(data) //3s 后 data === 文件不存在
+    })
+    // 实现一个 myforeach 功能 和 foreach一样
+    var arr = [0,1,2,3]
+    arr.forEach((val,i,ctx) => { // ctx指得是当前遍历的数组
+      console.log(val, i, ctx)
+    })
+
+    function myforeach (cb) {
+      let self = this
+      for(let i = 0;i<self.length;i++) {
+        cb(self[i], i, self)
+      }
+    }
+    Array.prototype.myforeach = myforeach
+    let arr1 = [1,2,3,4]
+    arr1.myforeach((val,i,ctx) => { // ctx指得是当前遍历的数组
+      console.log(val, i, ctx)
+    })
+  </script>
+</body>
+</html>
